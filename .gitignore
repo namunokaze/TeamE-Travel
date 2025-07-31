@@ -55,4 +55,5 @@
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
-/frontend/yarn-error.log*
+/frontend/yarn-error.log*frontend/public/Pics+Vids/*.mp4
+frontend/public/Pics+Vids/*.mov
