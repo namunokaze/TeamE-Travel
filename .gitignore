@@ -57,3 +57,8 @@
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*frontend/public/Pics+Vids/*.mp4
 frontend/public/Pics+Vids/*.mov
+/backend/log/
+/backend/storage/
+/backend/tmp/
+/backend/config/master.key
+/backend/public/robots.txt
