@@ -8,17 +8,18 @@
 }
 @font-face {
   font-family: 'nav-li';
-  src:url(../Font/CaviarDreams.ttf)
+  /* Sửa: Đường dẫn đã được chỉnh lại cho đúng cấu trúc src/assets/font */
+  src:url('../assets/font/CaviarDreams.ttf') format('truetype'); 
 }
 @font-face {
   font-family: 'nav-button';
-  src:url(../Font/Aston\ Script.ttf)
+  /* Sửa: Đường dẫn đã được chỉnh lại, thêm format và trích dẫn nếu tên có khoảng trắng */
+  src:url('../assets/font/Aston\ Script.ttf') format('truetype');
 }
 
 body {
   overflow-x: hidden !important;
 }
-
 /* ==========================================================================
    2. HEADER & NAVIGATION
    ========================================================================== */
@@ -64,7 +65,27 @@ nav {
 .nav-links li:hover {
   background-color: rgba(0, 0, 0, 1);
 }
-
+.site-logo {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Để logo căn giữa theo chiều cao nav */
+}
+.site-logo .logo-text {
+    font-family: 'nav-li', sans-serif; /* Dùng font Aston Script (nav-button) */
+    font-size: 1.8rem; /* Đặt kích thước vừa phải */
+    font-weight:lighter; 
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+}
+.site-logo a {
+    text-decoration: none;
+    color: #fff;
+    padding: 0 16px; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 /* --- Dropdown Menu --- */
 .dropdown-menu {
   list-style: none;
@@ -202,7 +223,6 @@ nav {
 }
 
 .language-dropdown {
-  display: none;
   position: absolute;
   top: 100%;
   right: 0;
@@ -411,9 +431,9 @@ h1 {
   display: inline-flex;
   animation: slideLeft 45s linear infinite;
 }
-
-
-
+.destination-track.paused {
+  animation-play-state: paused !important; 
+}
 .destination-grid-elegant::-webkit-scrollbar {
   display: none;  
 }
@@ -499,6 +519,7 @@ h1 {
 #scroll-right-btn {
   right: 1%;
 }
+
 
 /* ==========================================================================
    5. Gợi ý du lịch
@@ -666,24 +687,25 @@ h1 {
 #testimonials-slider {
   position: relative;
   overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 #testimonials-track {
   display: flex;
   transition: transform 0.5s ease;
+  white-space: nowrap;
 }
 
 .testimonial-card {
+  flex-shrink: 0; 
   min-width: 100%;
-  box-sizing: border-box;
-  background-color: #F8F8FF;
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-  text-align: center;
-  display: flex;
+  box-sizing: border-box; 
+  display: flex; 
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
+  background-color: #ffffff; 
+  padding: 3rem 4rem; 
 }
 
 .testimonial-avatar {
@@ -697,28 +719,29 @@ h1 {
 }
 
 .testimonial-quote {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #444;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  flex-grow: 1;
+  /* FIX FONT: Dùng font đặc biệt cho phần Quote */
+  font-family: 'nav-button', sans-serif; 
+  font-style: normal; /* Bỏ italic nếu font nav-button đã là cursive */
+  font-size: 1.8rem; /* Tăng kích thước để Quote nổi bật */
+  font-weight: lighter; /* Giảm độ đậm nếu font cursive quá dày */
+  color: #333;
+  margin-bottom: 2rem; /* Tăng margin để tách biệt */
+  line-height: 1.3;
 }
 
 .testimonial-author {
-  font-family: 'nav-li', sans-serif;
+  /* Giữ font sạch sẽ, cổ điển hơn cho tên tác giả */
+  font-family: 'nav-li', sans-serif; 
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 1.1rem; /* Giảm nhẹ để Quote nổi bật hơn */
+  color: #2d3d8b; /* Dùng màu thương hiệu cho tên tác giả */
 }
 
 .testimonial-trip {
   font-size: 0.9rem;
   color: #777;
   margin-top: 0.25rem;
+  font-family: 'nav-li', sans-serif;
 }
 .trustpilot-logo {
   width: 6rem;  

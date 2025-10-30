@@ -1,10 +1,13 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# config/initializers/cors.rb
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    # Cho phép React (chạy trên localhost:3000) truy cập
+    origins 'http://localhost:3000' 
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: false 
+  end
 end

@@ -1,23 +1,36 @@
-import React, { useEffect } from 'react';
+// src/pages/Home.js (Finalized Version)
+
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import Destination from '../components/Destination';
-import '../styles/main.css';
-
-// Nếu bạn muốn load script language.js
-import '../scripts/Language.js';
+import Destination from '../components/Destination'; // Chứa Traveler Favorites & Feature Hover
+import WhyChooseUs from '../components/WhyChooseUs'; 
+import TestimonialsSlider from '../components/TestimonialsSlider';
+import CallToAction from '../components/CallToAction';
+import BlogCarousel from '../components/BlogCarousel';
+import Partners from '../components/Partners';
+import Footer from '../components/Footer';
+import '../css/main.css'; 
 
 function Home() {
-  useEffect(() => {
-    // Bất cứ script nào cần DOM loaded có thể để ở đây nếu cần
-  }, []);
-
-  return (
-    <div>
-      <Navbar />
-      {/* Hero, Destinations, Features… sẽ thêm sau */}
-    </div>
-  );
+    return (
+        <div className="wrapper">
+            <Navbar />
+            
+            <main>
+                <Hero />
+                {/* Destination.js chứa 2 phần: Favorites và Feature Hover */}
+                <Destination /> 
+                <WhyChooseUs />
+                <TestimonialsSlider />
+                <CallToAction />
+                <BlogCarousel />
+                <Partners />
+            </main>
+            
+            <Footer />
+        </div>
+    );
 }
 
 export default Home;
