@@ -18,6 +18,7 @@ const LANGUAGES = [
     { code: 'en', labelKey: 'lang_english', flag: 'https://flagcdn.com/w20/gb.png' },
     { code: 'vn', labelKey: 'lang_vietnamese', flag: 'https://flagcdn.com/w20/vn.png' },
     { code: 'jp', labelKey: 'lang_japanese', flag: 'https://flagcdn.com/w20/jp.png' },
+    { code: 'mn', labelKey: 'lang_mongolian', flag: 'https://flagcdn.com/w20/mn.png' },
 ];
 const AVATAR_ICON = '/images/man_4179639.png'; 
 

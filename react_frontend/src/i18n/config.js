@@ -8,6 +8,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import enTranslation from './locales/en.json'; 
 import vnTranslation from './locales/vn.json';
 import jpTranslation from './locales/jp.json';
+import mnTranslation from './locales/mn.json';
 
 const resources = {
   en: {
@@ -19,6 +20,9 @@ const resources = {
   jp: {
     translation: jpTranslation,
   },
+  mn: {
+    translation: mnTranslation,
+  }
 };
 
 i18n
