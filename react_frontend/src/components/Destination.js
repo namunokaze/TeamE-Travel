@@ -64,7 +64,7 @@ function Destination() {
                         onMouseLeave={() => handleSliderHover(false)}
                     >
                         {DESTINATIONS_DATA.map((dest, index) => (
-                            <a href="#" className="destination-card-elegant" key={index}>
+                            <a href="qq" className="destination-card-elegant" key={index}>
                                 <img src={dest.image} alt={t(dest.key)} />
                                 <h3>{t(dest.key)}</h3>
                             </a>

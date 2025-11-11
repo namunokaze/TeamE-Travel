@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../css/main.css';
+import { Link } from "react-router-dom";
 
 // Dữ liệu tĩnh cho các liên kết điều hướng và ngôn ngữ
 const DESTINATION_LINKS = [
@@ -101,18 +102,20 @@ function Navbar() {
           </li>
           
           {/* Các Link Tĩnh Khác */}
-          <li><a href="#">{t('nav_about')}</a></li>
-          <li><a href="#">{t('nav_contact')}</a></li>
+          <li><a href="about">{t('nav_about')}</a></li>
+          <li><a href="contact">{t('nav_contact')}<Link to="/contact"></Link></a></li>
+          <li><a href="admin">{t('nav_admin')}<Link to="/admin"></Link></a></li>
         </ul>
 
         {/* User Actions: Vị trí sát phải (giữ nguyên) */}
         <div className="user-actions">
-          {/* User profile / Login */}
+          
           <div className="user-profile">
-            <a href="#">
-              <img className="profile-avatar" src={AVATAR_ICON} alt={t('user_login')} />
-              <span className="profile-name">{t('user_login')}</span>
-            </a>
+           <Link to="/userlogin">
+  <img className="profile-avatar" src={AVATAR_ICON} alt={t('user_login')} />
+  <span className="profile-name">{t('user_login')}</span>
+</Link>
+
           </div>
 
           {/* LANGUAGE SWITCHER */}
