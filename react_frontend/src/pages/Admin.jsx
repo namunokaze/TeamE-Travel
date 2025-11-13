@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./admin.css"; 
 
 export default function AdminDashboard() {
   const [messages, setMessages] = useState([]);
@@ -15,7 +16,7 @@ export default function AdminDashboard() {
   }, []);
 
   const handleDelete = (index) => {
-    if (window.confirm("Delete?")) {
+    if (window.confirm("Delete this message?")) {
       fetch(`http://localhost:3001/api/messages/${index}`, { method: "DELETE" })
         .then((res) => res.json())
         .then((data) => {
@@ -38,14 +39,27 @@ export default function AdminDashboard() {
       });
   };
 
+  const handleReply = (index, replyText) => {
+    fetch(`http://localhost:3001/api/messages/${index}/reply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reply: replyText }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.message);
+        fetchMessages();
+      });
+  };
+
   return (
-    <div style={{ maxWidth: 900, margin: "2rem auto" }}>
+    <div className="admin-container">
       <h2>📊 Admin — Contact Messages</h2>
 
       {messages.length === 0 ? (
         <p>No messages yet.</p>
       ) : (
-        <table border="1" cellPadding="8" style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="admin-table">
           <thead>
             <tr>
               <th>#</th>
@@ -54,6 +68,7 @@ export default function AdminDashboard() {
               <th>Message</th>
               <th>Date</th>
               <th>Status</th>
+              <th>Reply</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -65,57 +80,44 @@ export default function AdminDashboard() {
                 <td>{m.email}</td>
                 <td>{m.message}</td>
                 <td>{new Date(m.date).toLocaleString()}</td>
+                <td className={`status ${m.status}`}>
+                  {m.status.toUpperCase()}
+                </td>
                 <td>
-                  <span
-                    style={{
-                      color: m.status === "new" ? "red" : "green",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {m.status}
-                  </span>
+                  {m.reply ? (
+                    <span className="reply-text">💬 {m.reply}</span>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        placeholder="Reply..."
+                        className="reply-input"
+                        id={`reply-${i}`}
+                      />
+                      <button
+                        className="send-btn"
+                        onClick={() =>
+                          handleReply(
+                            i,
+                            document.getElementById(`reply-${i}`).value
+                          )
+                        }
+                      >
+                        Send
+                      </button>
+                    </>
+                  )}
                 </td>
                 <td>
                   <button
+                    className="mark-btn"
                     onClick={() => handleStatusChange(i, "read")}
-                    style={{
-                      backgroundColor: "#4CAF50",
-                      color: "white",
-                      border: "none",
-                      padding: "5px 8px",
-                      marginRight: "5px",
-                      cursor: "pointer",
-                      borderRadius: "5px",
-                    }}
                   >
                     Mark as Read
                   </button>
-
-                  {/* 📨 Reply товч */}
-                  <a
-                    href={`mailto:${m.email}?subject=Re: Your message&body=Hello ${m.name},%0D%0A%0D%0A`}
-                    style={{
-                      backgroundColor: "#007bff",
-                      color: "white",
-                      padding: "5px 8px",
-                      borderRadius: "5px",
-                      marginRight: "5px",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Reply
-                  </a>
-
                   <button
+                    className="delete-btn"
                     onClick={() => handleDelete(i)}
-                    style={{
-                      backgroundColor: "red",
-                      color: "white",
-                      border: "none",
-                      padding: "5px 8px",
-                      cursor: "pointer",
-                      borderRadius: "5px",
-                    }}
                   >
                     Delete
                   </button>
